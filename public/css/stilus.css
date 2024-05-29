@@ -1,0 +1,161 @@
+#castle
+{
+    /*width: 100vw;*/
+    height: 90vh;
+    transform: scale(1.7,1);
+
+    
+}
+
+.ladder
+{
+    background-image: url("/img/ladder.webp");
+    background-size: contain;
+    transform: rotate(90deg);
+    width: 100px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.ladder div
+{
+    transform: rotate(-90deg);
+    /*border: 1px solid black;*/
+    font-size: 20pt;
+    color: rgb(9, 9, 156);
+    font-weight: bold;
+    text-shadow: #FC0 1px 0 10px;
+
+
+}
+
+.ladder div:hover
+{
+    color:rgb(6, 151, 50);
+}
+
+
+#ladder0
+{
+    position: absolute;
+    bottom: -40px;
+    left: 250px;
+}
+#ladder1
+{
+    position: absolute;
+    bottom: -40px;
+    left: 500px;
+}
+#ladder2
+{
+    position: absolute;
+    bottom: -40px;
+    left: 750px;
+}
+
+#ladder3
+{
+    position: absolute;
+    bottom: -40px;
+    left: 1200px;
+}
+#ladder4
+{
+    position: absolute;
+    bottom: -40px;
+    left: 1450px;
+}
+
+#juliet
+{
+    background-image: url("/img/juliet.webp");
+    background-size: contain;
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    top: 360px;
+    left: 700px;
+
+}
+
+#romeo
+{
+    background-image: url("/img/romeo2.png");
+    background-size: contain;
+    position: absolute;
+    width: 250px;
+    height: 210px;
+    bottom: -20px;
+    left: 20px;
+
+}
+
+#white-flag
+{
+    background-image: url("/img/zaszlo6.png");
+    background-size: contain;
+    position: absolute;
+    width: 230px;
+    height: 210px;
+    top: 90px;
+    left: 1185px;
+    background-repeat: no-repeat;
+
+}
+
+#white-flag div
+{
+    
+    /*border: 1px solid black;*/
+    font-size: 30pt;
+    color: rgb(3, 3, 53);
+    font-weight: bold;
+    text-shadow: #FC0 1px 0 10px;
+    margin-top: 30px;
+    text-align: center;
+
+}
+
+#bird
+{
+    background-image: url("/img/100pxbird.gif");
+    background-size: contain;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    left: 50px;
+
+}
+#pont
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color:white;
+    font-size: 20pt;
+}
+
+
+body
+{
+    background-image: url("/img/hatter1.png");
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    background-size:100vw 100vh ;
+    overflow: hidden;
+   
+    
+}
+
+#castle-container
+{
+    text-align: center;
+}

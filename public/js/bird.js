@@ -1,0 +1,24 @@
+import{wordRequest} from "./wordChange.js";
+
+let birdPosition=0;
+let flyingSpeed=5;
+let birdDiv=document.getElementById("bird");
+
+function birdMovement()
+{
+    birdPosition=birdPosition+flyingSpeed;
+    if(birdPosition>window.innerWidth)
+    {
+        birdPosition=0;
+        wordRequest();
+    }
+    birdDiv.style.left=birdPosition+"px";
+
+}
+
+export function flySpeed(newFlySpeed)
+{
+    flyingSpeed=newFlySpeed;
+    birdPosition=0;
+}
+setInterval(birdMovement,33);
