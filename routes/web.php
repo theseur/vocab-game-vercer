@@ -1,14 +1,32 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SzoSzedetController;
 use App\Http\Controllers\SzoSzedetApiController;
 
 Route::get('/', function () {
+    return view('leiras');
+});
+
+
+Route::get('/index', function () {
+    return view('index');
+});
+Route::get('/api/index', function () {
     return view('index');
 });
 
-Route::get('/szoszedet'  , [SzoSzedetController::class,  'show']);
-Route::get('/api/szoszedet'  , [SzoSzedetApiController::class,  'szoSzedetApi']);
+Route::get('/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
+Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

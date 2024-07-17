@@ -10,7 +10,7 @@ class SzoSzedetController extends Controller
 {
     public function show(): View
     {   
-        var_dump(Szoszedet::all());
+        //var_dump(Szoszedet::all());
         return view('welcome');
     }
 }

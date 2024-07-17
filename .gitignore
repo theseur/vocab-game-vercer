@@ -20,3 +20,5 @@ yarn-error.log
 /.vscode
 
 .vercel
+vercel1.json
+vercel.json

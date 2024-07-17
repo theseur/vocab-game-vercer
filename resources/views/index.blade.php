@@ -13,10 +13,12 @@
     <script src="/js/bird.js" type="module" defer></script>
     <script src="/js/ladder.js" type="module" defer></script>
     <script src="/js/wordChange.js" type="module" defer></script>
-
+    <script src="/js/romeo.js" type="module" defer></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
+
 <body>
     <div id="castle-container">
         <img src="/img/castle.svg" id="castle" alt="">
@@ -73,6 +75,10 @@
 
         </div>
 
+        <div class="kilepes">
+            @include('menus.kilepes') 
+        </div>
+    <div id="sziv">   
     </div>
 </body>
 </html>

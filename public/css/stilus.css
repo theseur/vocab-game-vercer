@@ -142,6 +142,74 @@
     font-size: 20pt;
 }
 
+#castle-container
+{
+    text-align: center;
+}
+
+#leiras1
+{
+    background-color: red;
+    font-size: 40px;
+    
+}
+#leiras2
+{
+    background-color:blue;
+    font-size: 40px;
+    
+}
+#leiras3
+{
+    background-color: red;
+    font-size: 40px;
+    
+}
+#leiras4
+{
+  
+    font-size: 40px;
+    
+}
+#leiras5
+{
+  
+    font-size: 40px;
+    
+}
+
+#leiras6
+{
+  
+    font-size: 40px;
+    
+}
+
+#sziv
+{
+    background-image: url("/img/heart.gif");
+    display: none;
+    background-size: contain;
+    width: 100px;
+    height:100px;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+.menulink
+{
+    font-size: 40px;
+}
+
+.kilepes
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
 
 body
 {
@@ -155,7 +223,3 @@ body
     
 }
 
-#castle-container
-{
-    text-align: center;
-}
