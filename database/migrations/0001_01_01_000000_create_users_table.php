@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken()->nullable();
             $table->timestamps();
-            $table->string('osztaly');
-            $table->integer('deactivate');
+            $table->string('osztaly')->default('');
+            $table->integer('deactivate')->default('0');
             $table->unique(['name', 'password']);
 
         });
