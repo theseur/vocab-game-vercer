@@ -28,7 +28,8 @@
       Tanároknak<br>
     </div>
     <div id="leiras6">
-       Adminisztrátor<br>
+        <a href="/login">Adminisztrátor</a>
+       <br>
       </div>
       @include('menus.kilepes') 
 </body>
