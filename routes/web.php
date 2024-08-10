@@ -7,6 +7,8 @@ use App\Http\Controllers\TanarokOldalaPageController;
 use App\Http\Controllers\DiakokOldalaPageController;
 use App\Http\Controllers\TanarhozzadasPageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TargyController;
+use App\Http\Controllers\TemakorController;
 
 Route::get('/', function () {
     return view('leiras');
@@ -33,8 +35,37 @@ Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanar
 Route::get('/api/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadasa");
 
 
-Route::post('store-form', [PostController::class, 'store']);
+Route::post('/store-form', [PostController::class, 'store']);
 
+Route::get('/indexTargy', [TargyController::class, 'indexTargy'])->name("indexTargy");
+Route::post('/store-formtargy', [TargyController::class, 'targyStore']);
+
+Route::get('/tantargyoldal', [TargyController::class, 'isAdminTantargy'])->name("tantargyoldal");
+Route::get('/api/tantargyoldal', [TargyController::class, 'isAdminTantargy'])->name("tantargyoldal");
+
+
+
+Route::get('/targylist', [TargyController::class, 'targyList'])->name("targylist");
+Route::get('/api/targylist', [TargyController::class, 'targyList'])->name("targylist");
+
+Route::get('/tantargyszerk/{tantargyid}', [TargyController::class, 'tanTargySzerk'])->name("tantargyszerk");
+Route::get('/api/tantargyszerk/{tantargyid}', [TargyController::class, 'tanTargySzerk'])->name("tantargyszerk");
+
+
+Route::post('/tantargymod/{tantargyid}', [TargyController::class, 'tanTargyMod'])->name("tantargymod");
+Route::post('/api/tantargymod/{tantargyid}', [TargyController::class, 'tanTargyMod'])->name("tantargymod");
+
+
+Route::get('/temakoroldal', [TemakorController::class, 'isAdminTemakor'])->name("temakoroldal");
+Route::get('/api/temakoroldal', [TemakorController::class, 'isAdminTemakor'])->name("temakoroldal");
+
+
+
+Route::get('/tanarlist', [TanarokOldalaPageController::class, 'tanarList'])->name("tanarlist");
+Route::get('/api/tanarlist', [TanarokOldalaPageController::class, 'tanarList'])->name("tanarlist");
+
+Route::get('/tantargyhozzaadas', [TanarokOldalaPageController::class, 'tantargyHozzaAdas'])->name("tantargyhozzaadas");
+Route::get('/api/tantargyhozzaadas', [TanarokOldalaPageController::class, 'tantargyHozzaAdas'])->name("tantargyhozzaadas");
 
 
 Route::get('/dashboard', function () {

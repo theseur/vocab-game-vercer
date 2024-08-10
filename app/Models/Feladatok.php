@@ -10,4 +10,5 @@ class Feladatok extends Model
     protected $table = 'feladatok';
     protected $primaryKey = 'id';
     public $incrementing = true;
+    public $timestamps=false;
 }

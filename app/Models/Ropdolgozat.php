@@ -10,5 +10,6 @@ class Ropdolgozat extends Model
     protected $table = 'ropdolgozat';
     protected $primaryKey = 'id';
     public $incrementing = true;
+    public $timestamps=false;
 
 }

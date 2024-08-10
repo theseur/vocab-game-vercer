@@ -13,12 +13,20 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('tanarokoldala')" :active="request()->routeIs('tanarokoldala')">
-                        Tanárok névsora
+                        Tanárok oldala
                     </x-nav-link>
 
                     <x-nav-link :href="route('diakokoldala')" :active="request()->routeIs('diakokoldala')">
-                      Diákok névsora
+                      Diákok oldala
                     </x-nav-link>
+
+                    <x-nav-link :href="route('tantargyoldal')" :active="request()->routeIs('diakokoldala')">
+                        Tantárgy lista
+                      </x-nav-link>
+
+                      <x-nav-link :href="route('temakoroldal')" :active="request()->routeIs('diakokoldala')">
+                        Témakör lista
+                      </x-nav-link>
                 </div>
             </div>
 

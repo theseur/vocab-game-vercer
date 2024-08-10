@@ -10,4 +10,5 @@ class Targytemakor extends Model
     protected $table = 'targytemakor';
     protected $primaryKey = 'id';
     public $incrementing = true;
+    public $timestamps=false;
 }

@@ -39,7 +39,7 @@ class PostController extends Controller
                 $post->password = $request->password;
                 $post->osztaly="teacher";
                 $post->save();
-                return redirect('tanarokoldala')->with('status', 'Blog Post Form Data Has Been inserted');
+                return redirect('tanarokoldala')->with('status', 'Tanár hozzáadása sikerült.');
 
                 }
 

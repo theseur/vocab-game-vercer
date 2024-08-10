@@ -10,4 +10,5 @@ class Ropbeallitas extends Model
     protected $table = 'ropbeallitas';
     protected $primaryKey = 'id';
     public $incrementing = true;
+    public $timestamps=false;
 }
