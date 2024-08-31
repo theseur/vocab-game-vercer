@@ -1,6 +1,6 @@
 <x-app-layout>
    
-            <x-nav-link :href="route('tanarokoldala')" :active="request()->routeIs('tanarokoldala')">
+            <x-nav-link :href="route('indexdiak')" :active="request()->routeIs('indexdiak')">
                 Diák hozzáadása
             </x-nav-link>
 

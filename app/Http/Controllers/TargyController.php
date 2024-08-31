@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Targytemakor;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use \Illuminate\Database\QueryException;
+
 
 class TargyController extends Controller
 {
@@ -65,8 +69,18 @@ class TargyController extends Controller
             $post->kepnev= $imageName;
         }
         
-        $post->save();
+
+        try
+        {
+            $post->save();
         return redirect('tantargyhozzaadas')->with('status', 'A tantárgyat hozzáadtuk.');
+        }
+
+        catch (QueryException $e)
+        {
+            return view('hibaoldal');
+        }
+        
 
         }
 
@@ -95,21 +109,34 @@ class TargyController extends Controller
 
     public function tanTargySzerk(Request $request, $tantargyid=0) 
     {
+        
+        $files1 = File::files(public_path('img/targytemakor'));
+        
         $tantargy = DB::table('targytemakor')->where('id','=',$tantargyid )->first();
-        return view('tantargymod', compact("tantargy"));
+        return view('tantargymod', compact("tantargy", "files1"));
     }
 
     public function tanTargyMod(Request $request, $tantargyid=0)
     {
+
+        try
+        {
+            $pizza = DB::table('targytemakor')->where('id','=',$tantargyid ) 
+            ->update(array
+            ('nev'=>$_POST["nev"],'kepnev'=>$_POST["kepnev"],
+            'deactivate'=>array_key_exists('deactivate',$_POST)?1:0));
+            /*var_dump($_POST);
+            echo "<br>";
+            var_dump($catprice);*/
+            return redirect('targylist')->with('status', 'A tantárgyat módosítottuk.');
+        }
        
-       $pizza = DB::table('targytemakor')->where('id','=',$tantargyid ) 
-        ->update(array
-        ('nev'=>$_POST["nev"],'kepnev'=>$_POST["kepnev"],
-        'deactivate'=>array_key_exists('deactivate',$_POST)?1:0));
-        /*var_dump($_POST);
-        echo "<br>";
-        var_dump($catprice);*/
-        return redirect('targylist')->with('status', 'A tantárgyat módosítottuk.');
+        catch (QueryException $e)
+        {
+            return view('hibaoldal');
+        }
+       
+       
         
     }
 }

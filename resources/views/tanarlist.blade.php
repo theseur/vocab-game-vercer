@@ -14,7 +14,7 @@
                 <td class="td_2"> {{$data->password}} </td>
                 <td class="td_3"> {{$data->osztaly}} </td>
                 <td class="td_4"> {{$data->deactivate}} </td>
-            
+                <td><a href="{{route('tanarszerk', [$data->id ])}}" class="btn btn-success"> Szerkesztés </a>
 
                 </tr>
                 @endforeach

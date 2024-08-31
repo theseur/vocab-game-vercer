@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use \Illuminate\Database\QueryException;
 
 
 class TanarokOldalaPageController extends Controller
@@ -41,10 +43,10 @@ class TanarokOldalaPageController extends Controller
        
     }
 
-    public function tantargyHozzaAdas()
+    public function tanarHozzaAdas()
     {
         if (auth()->user()->hasRole('admin')) {
-            return view('tantargyhozzaadas');
+            return view('tanarhozzaadas');
         }
 
         else
@@ -55,5 +57,28 @@ class TanarokOldalaPageController extends Controller
        
     }
     
+    public function tanarSzerk(Request $request, $tanarid=0) 
+    {
+        
+        
+        
+        $tanar = DB::table('users')->where('id','=',$tanarid )->first();
+        return view('tanarmod', compact("tanar"));
+    }
+
+    public function tanarMod(Request $request, $tanarid=0)
+    {
+       
+       
+       $pizza = DB::table('users')->where('id','=',$tanarid ) 
+        ->update(array
+        ('nev'=>$_POST["nev"],'password'=>$_POST["password"],
+        'deactivate'=>array_key_exists('deactivate',$_POST)?1:0));
+        /*var_dump($_POST);
+        echo "<br>";
+        var_dump($catprice);*/
+        return redirect('targylist')->with('status', 'A tantárgyat módosítottuk.');
+        
+    }
     
 }

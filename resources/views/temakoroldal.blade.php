@@ -3,13 +3,13 @@
     
     
             
-    <x-nav-link :href="route('tanarlist')" :active="request()->routeIs('tanarlist')">
+    <x-nav-link :href="route('temakorlist')" :active="request()->routeIs('temakorlist')">
                 Témakör szerkesztése
     </x-nav-link>
 
     
 
-    <x-nav-link :href="route('indexTargy')" :active="request()->routeIs('indexTargy')">
+    <x-nav-link :href="route('indextemakor')" :active="request()->routeIs('indextemakor')">
       Témakör hozzáadása
     </x-nav-link>
    
