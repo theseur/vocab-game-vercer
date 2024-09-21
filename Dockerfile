@@ -29,7 +29,7 @@ COPY . .
 
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . .
-
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Expose port 9000 and start php-fpm server
 EXPOSE 8000
 #CMD ["php-fpm"]
