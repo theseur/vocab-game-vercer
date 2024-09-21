@@ -9,6 +9,7 @@
     <x-nav-link :href="route('indexTargy')" :active="request()->routeIs('indexTargy')">
         Tantárgy hozzáadása
     </x-nav-link>
+    {{$status}}
    
 </x-app-layout>
    

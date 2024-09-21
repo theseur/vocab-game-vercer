@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <x-nav-link :href="route('diakhozzadascsv')" :active="request()->routeIs('diakhozzadascsv')">
+    <x-nav-link :href="route('diakokhozzadasacsv')" :active="request()->routeIs('diakokhozzadasacsv')">
         Diák hozzáadása excel táblából
     </x-nav-link>
 

@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <h1 class="own_h1">Tantárgy módosítása</h1>
+    <h1 class="own_h1">Tanár adatainak módosítása</h1>
     <form class="forms" action= "{{route('tanarmod',[$tanar->id])}}" method="POST" >
       @csrf <!-- {{ csrf_field() }} -->
   <label class="own_label_1" for="id">Tanár id:</label><br>

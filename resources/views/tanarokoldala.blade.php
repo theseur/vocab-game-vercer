@@ -10,6 +10,6 @@
             <x-nav-link :href="route('tanarhozzaadas')" :active="request()->routeIs('tanarhozzaadas')">
                 Tanár hozzáadása
             </x-nav-link>
-             
+            {{$status}}
       
 </x-app-layout>

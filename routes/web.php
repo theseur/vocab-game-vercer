@@ -98,8 +98,23 @@ Route::get('/api/diakokoldala', [DiakokOldalaPageController::class, 'isAdminDiak
 Route::get('/indexdiak', [DiakokOldalaPageController::class, 'indexDiak'])->name("indexdiak");
 Route::post('/store-formdiak', [DiakokOldalaPageController::class, 'diakStore']);
 
-Route::get('/diakhozzadascsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakhozzadascsv");
-Route::get('/api/diakhozzadascsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakhozzadascsv");
+Route::post('/store-formdiakcsv', [DiakokOldalaPageController::class, 'diakStoreCSV']);
+
+Route::get('/diakokhozzadasacsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakokhozzadasacsv");
+Route::get('/api/diakokhozzadasacsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakokhozzadasacsvv");
+
+Route::get('/diaklist', [DiakokOldalaPageController::class, 'diakList'])->name("diaklist");
+Route::get('/api/diaklist', [DiakokOldalaPageController::class, 'diakList'])->name("diaklist");
+
+Route::post('/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
+Route::post('/api/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
+
+
+Route::post('/diakmod/{diakid}', [DiakokOldalaPageController::class, 'diakMod'])->name("diakmod");
+Route::post('/api/diakmod/{diakid}', [DiakokOldalaPageController::class, 'diakMod'])->name("diakmod");
+
+Route::get('/diakszerk/{diakid}', [DiakokOldalaPageController::class, 'diakSzerk'])->name("diakszerk");
+Route::get('/api/diakszerk/{diakd}', [DiakokOldalaPageController::class, 'diakSzerk'])->name("diakszerk");
 
 
 

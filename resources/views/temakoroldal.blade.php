@@ -13,5 +13,7 @@
       Témakör hozzáadása
     </x-nav-link>
    
+    {{$status}}
+
 </x-app-layout>
    
