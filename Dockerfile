@@ -21,7 +21,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-RUN apt install sudo 
+RUN apt update
+
+RUN apt install sudo -y
 
 RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 
@@ -40,7 +42,7 @@ COPY --chown=www-data:www-data . .
 
 RUN npm install
 
-RUN npm RUN build
+RUN npm run build
 
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
