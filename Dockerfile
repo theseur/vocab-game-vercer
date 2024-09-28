@@ -21,6 +21,14 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+RUN apt install sudo 
+
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+
+RUN sudo apt install nodejs -y
+
+
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -29,7 +37,13 @@ COPY . .
 
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . .
+
+RUN npm install
+
+RUN npm RUN build
+
 RUN composer install --no-interaction --optimize-autoloader --no-dev
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 8000
 #CMD ["php-fpm"]
