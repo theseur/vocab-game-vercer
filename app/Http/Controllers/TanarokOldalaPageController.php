@@ -54,14 +54,16 @@ class TanarokOldalaPageController extends Controller
     public function tanarMod(Request $request, $tanarid = 0)
     {
 
-        $pizza = DB::table('users')->where('id', '=', $tanarid)
+         DB::table('users')->where('id', '=', $tanarid)
             ->update(array
                 ('name' => $_POST["name"], 'password' => Hash::make($request->password),
                     'deactivate' => property_exists($request, 'deactivate') ? 1 : 0));
         /*var_dump($_POST);
         echo "<br>";
         var_dump($catprice);*/
-        return view('tanarlist')->with('status', ' Módosítottuk.');
+        $datas = DB::table('users')->where('osztaly', 'like', 'teacher')->get();
+        $status="Módosítottuk.";
+        return view('tanarlist', compact("status", "datas"));
 
     }
 
