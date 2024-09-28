@@ -1,4 +1,10 @@
 <x-app-layout>
+    @isset($status)
+
+     <p> Módosítottuk.</p>
+
+    @endisset
+
     <table>    
         <tr>
             <th class="th_1">name</th>
