@@ -21,5 +21,5 @@
          </div>
     </form>
 
-    <a href="{{ url('diaktoroltlist') }}">Kattintson ide a törölt diákok listájához</a>
+    
 </x-app-layout>

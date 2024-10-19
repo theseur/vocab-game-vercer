@@ -109,7 +109,7 @@ Route::get('/api/diaklist', [DiakokOldalaPageController::class, 'diakList'])->na
 Route::post('/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
 Route::post('/api/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
 
-Route::get('/diaklisttorolt', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
+Route::get('/diaktoroltlist', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
 Route::get('/api/diaklisttorolt', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
 
 Route::post('/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkent");
