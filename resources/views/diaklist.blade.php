@@ -19,5 +19,7 @@
     <div class="gombok_2">
         <input class="btn btn-success" type="submit" value="Submit">
          </div>
+    </form>
 
+    <a href="{{ url('page') }}">Kattintson ide a törölt diákok listájához</a>
 </x-app-layout>

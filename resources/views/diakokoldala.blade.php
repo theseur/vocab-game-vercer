@@ -13,11 +13,11 @@
                 Diák hozzáadása csv-ből
             </x-nav-link>
 
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-nav-link :href="route('nyolcadikosoktorlese')" :active="request()->routeIs('nyolcadikosoktorlese')">
                 Nyolcadikosok törlése
             </x-nav-link>
 
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-nav-link :href="route('leptetes')" :active="request()->routeIs('leptetes')">
                 Osztályok előre léptetése
             </x-nav-link>
            {{$status}}

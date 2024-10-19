@@ -10,6 +10,8 @@
   <input type="text" id="name" name="name" value="{{$diak->name}}"><br><br>
   <label class="own_label_1" for="password">Jelszó:</label><br>
   <input type="text" id="password" name="password" value=""><br><br>
+  <label class="own_label_1" for="osztaly">Osztály:</label><br>
+  <input type="text" id="osztaly" name="osztaly" value="{{$diak->osztaly}}"><br><br>
   <label class="own_label_1" for="deactivate">Deactivate</label>
   <input type="checkbox" name="deactivate" value="1" {{  ($diak->deactivate== 1 ? ' checked' : '') }}><br>
   <div class="gombok_2">

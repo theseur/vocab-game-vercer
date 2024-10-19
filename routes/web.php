@@ -109,6 +109,12 @@ Route::get('/api/diaklist', [DiakokOldalaPageController::class, 'diakList'])->na
 Route::post('/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
 Route::post('/api/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'diakListOsztalyonkent'])->name("diaklistosztalyonkent");
 
+Route::get('/diaklisttorolt', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
+Route::get('/api/diaklisttorolt', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
+
+Route::post('/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkent");
+Route::post('/api/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkenttorolt");
+
 
 Route::post('/diakmod/{diakid}', [DiakokOldalaPageController::class, 'diakMod'])->name("diakmod");
 Route::post('/api/diakmod/{diakid}', [DiakokOldalaPageController::class, 'diakMod'])->name("diakmod");
@@ -122,11 +128,16 @@ Route::get('/api/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyo
 Route::get('/osztalyokeloreleptetese', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("osztalyokeloreleptetese");
 Route::get('/api/osztalyokeloreleptetese', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("osztalyokeloreleptetese");
 
-Route::get('/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
-Route::get('/api/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
+
+Route::get('/torles', [DiakokOldalaPageController::class, 'torles'])->name("torles");
+Route::get('/api/torles', [DiakokOldalaPageController::class, 'torles'])->name("torles");
+
 
 Route::get('/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
 Route::get('/api/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
+
+Route::get('/leptetes2', [DiakokOldalaPageController::class, 'leptetes'])->name("leptetes2");
+Route::get('/api/leptetes2', [DiakokOldalaPageController::class, 'leptetes'])->name("leptetes2");
 
 
 Route::get('/dashboard', function () {

@@ -156,6 +156,7 @@ class DiakokOldalaPageController extends Controller
             $datas2 = DB::table('users')->distinct()
                 ->where('osztaly', '!=', '')
                 ->where('osztaly', 'not like', 'teacher')
+                ->where('deactivate', '=', '0')
                 ->get(['osztaly']);
             return view("diaklist", compact("datas2"));
         } else {
@@ -164,11 +165,45 @@ class DiakokOldalaPageController extends Controller
 
     }
 
+    public function diakListtorolt()
+    {
+        if (auth()->user()->hasRole('admin')) {
+
+            $datas2 = DB::table('users')->distinct()
+                ->where('osztaly', '!=', '')
+                ->where('osztaly', 'not like', 'teacher')
+                ->where('deactivate', '=', '1')
+                ->get(['osztaly']);
+            return view("diaklist", compact("datas2"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+
     public function diakListOsztalyonkent(Request $request)
     {
         if (auth()->user()->hasRole('admin')) {
             $osztaly = $request->osztaly;
             $datas = DB::table('users')->where('osztaly', 'like', $osztaly)->get();
+            // ->whereNotNull('osztaly')->get();
+
+            return view("diaklistosztalyonkent", compact("datas"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+    public function diakListOsztalyonkenttorolt(Request $request)
+    {
+        if (auth()->user()->hasRole('admin')) {
+            $osztaly = $request->osztaly;
+            $datas = DB::table('users')
+            ->where('osztaly', 'like', $osztaly)
+            ->where('deactivate', '=', '1')
+            ->get();
             // ->whereNotNull('osztaly')->get();
 
             return view("diaklistosztalyonkent", compact("datas"));
@@ -191,17 +226,18 @@ class DiakokOldalaPageController extends Controller
             $pizza = DB::table('users')->where('id', '=', $diakid)
                 ->update(array
                     ('name' => $_POST["name"], 'password' => Hash::make($request->password),
+                    'osztaly' => Hash::make($request->osztaly),
                         'deactivate' => property_exists($request, 'deactivate') ? 1 : 0));
             /*var_dump($_POST);
             echo "<br>";
             var_dump($catprice);*/
-            $status="Módosítottuk.";
+            $status = "Módosítottuk.";
             $datas2 = DB::table('users')->distinct()
                 ->where('osztaly', '!=', '')
                 ->where('osztaly', 'not like', 'teacher')
                 ->get(['osztaly']);
 
-            return view('diakokoldala',compact("status", "datas2"));
+            return view('diakokoldala', compact("status", "datas2"));
         } else {
 
             return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
@@ -214,7 +250,7 @@ class DiakokOldalaPageController extends Controller
     {
         if (auth()->user()->hasRole('admin')) {
 
-            $hova="torles";
+            $hova = "torles";
             return view('felugroablak', compact("hova"));
         } else {
             return redirect('/');
@@ -226,7 +262,7 @@ class DiakokOldalaPageController extends Controller
     {
         if (auth()->user()->hasRole('admin')) {
 
-            $hova="leptetes";
+            $hova = "leptetes2";
             return view('felugroablak', compact("hova"));
         } else {
             return redirect('/');
@@ -236,17 +272,49 @@ class DiakokOldalaPageController extends Controller
 
     public function leptetes()
     {
+        $data = DB::table('users')
+            ->where([
+                ['osztaly', 'like', '8%'],
+                ['deactivate', '=', '0'],
+            ])
+            ->get();
+
+        if (!$data->isEmpty()) {
+            $datas = "A nyolcadikosokat még nem törölték!";
+            return view('hibaoldal', compact("datas"));
+        } else 
+        { $result1 = DB::select(" SELECT DISTINCT osztaly FROM users
+            where osztaly <>''
+            and osztaly not like 'teacher'
+            and
+            deactivate=0
+            ");
+
+            foreach ($result1 as $osztalyok) {
+
+                $osztalySzam = intval(substr($osztalyok->osztaly, 0, 1));
+                $teljesoszttaly = $osztalyok->osztaly;
+                $osztalySzam++;
+                $maradekosztaly = substr($osztalyok->osztaly, 1);
+                $beirando = $osztalySzam . $maradekosztaly;
+
+                DB::update('UPDATE users SET osztaly  = ? WHERE osztaly like ?', [$beirando, $teljesoszttaly]);
+
+            }
+            return view('diakokoldala')->with('status', '');
+        }
 
     }
 
     public function torles()
     {
         DB::table('users')
-                ->where('osztaly', 'like', '8%')
-                ->update(['deactivate' => 1]);
+            ->where('osztaly', 'like', '8%')
+            ->update(['deactivate' => 1]);
+
+            return view('diakokoldala')->with('status', '');
 
     }
-
 
     public function Osztalyvizsgalat($osztaly)
     {
@@ -270,4 +338,10 @@ class DiakokOldalaPageController extends Controller
         return true;
 
     }
+
+    public function JelszoVizsgalat()
+    {
+
+    }
+
 }
