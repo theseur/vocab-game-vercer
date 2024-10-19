@@ -102,7 +102,9 @@ class TargyController extends Controller
             /*var_dump($_POST);
             echo "<br>";
             var_dump($catprice);*/
-            return view('targylist')->with('status', 'A tantárgyat módosítottuk.');
+            $status="Módosítottuk.";
+            $datas = DB::table('targytemakor')->whereNull('szulo')->get();
+            return view('targylist', compact("status", "datas"));
         } catch (QueryException $e) {
             return view('hibaoldal');
         }

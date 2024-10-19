@@ -116,6 +116,17 @@ Route::post('/api/diakmod/{diakid}', [DiakokOldalaPageController::class, 'diakMo
 Route::get('/diakszerk/{diakid}', [DiakokOldalaPageController::class, 'diakSzerk'])->name("diakszerk");
 Route::get('/api/diakszerk/{diakd}', [DiakokOldalaPageController::class, 'diakSzerk'])->name("diakszerk");
 
+Route::get('/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
+Route::get('/api/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
+
+Route::get('/osztalyokeloreleptetese', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("osztalyokeloreleptetese");
+Route::get('/api/osztalyokeloreleptetese', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("osztalyokeloreleptetese");
+
+Route::get('/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
+Route::get('/api/nyolcadikosoktorlese', [DiakokOldalaPageController::class, 'nyolcadikosokTorlese'])->name("nyolcadikosoktorlese");
+
+Route::get('/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
+Route::get('/api/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
 
 
 Route::get('/dashboard', function () {

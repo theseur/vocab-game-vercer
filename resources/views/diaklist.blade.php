@@ -1,5 +1,10 @@
 <x-app-layout>
 
+    @isset($status)
+
+     <p> Módosítottuk.</p>
+
+    @endisset
     <form class="forms" action= "{{route('diaklistosztalyonkent')}}" method="POST" >
         @csrf <!-- {{ csrf_field() }} -->
 

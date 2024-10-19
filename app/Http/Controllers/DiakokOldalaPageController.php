@@ -195,7 +195,13 @@ class DiakokOldalaPageController extends Controller
             /*var_dump($_POST);
             echo "<br>";
             var_dump($catprice);*/
-            return view('diakokoldala')->with('status', ' Módosítottuk.');
+            $status="Módosítottuk.";
+            $datas2 = DB::table('users')->distinct()
+                ->where('osztaly', '!=', '')
+                ->where('osztaly', 'not like', 'teacher')
+                ->get(['osztaly']);
+
+            return view('diakokoldala',compact("status", "datas2"));
         } else {
 
             return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
@@ -203,6 +209,44 @@ class DiakokOldalaPageController extends Controller
         }
 
     }
+
+    public function nyolcadikosokTorlese()
+    {
+        if (auth()->user()->hasRole('admin')) {
+
+            $hova="torles";
+            return view('felugroablak', compact("hova"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+    public function osztalyokEloreLeptetese()
+    {
+        if (auth()->user()->hasRole('admin')) {
+
+            $hova="leptetes";
+            return view('felugroablak', compact("hova"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+    public function leptetes()
+    {
+
+    }
+
+    public function torles()
+    {
+        DB::table('users')
+                ->where('osztaly', 'like', '8%')
+                ->update(['deactivate' => 1]);
+
+    }
+
 
     public function Osztalyvizsgalat($osztaly)
     {

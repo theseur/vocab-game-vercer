@@ -111,7 +111,9 @@ class TemakorController extends Controller
             /*var_dump($_POST);
             echo "<br>";
             var_dump($catprice);*/
-            return view('temakorlist')->with('status', 'A témakört módosítottuk.');
+            $status="Módosítottuk.";
+            $datas = DB::table('targytemakor')->whereNotNull('szulo')->get();
+            return view('temakorlist', compact("status", "datas"));
         } catch (Exception $e) {
             return view('hibaoldal');
         }
