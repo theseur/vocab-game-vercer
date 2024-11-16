@@ -31,7 +31,7 @@ Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadas");
 Route::get('/api/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadasa");
 
-Route::post('/store-form', [PostController::class, 'store']);
+Route::post('/store-form', [TanarokOldalaPageController::class, 'store']);
 
 Route::get('/indexTargy', [TargyController::class, 'indexTargy'])->name("indexTargy");
 Route::post('/store-formtargy', [TargyController::class, 'targyStore']);
@@ -98,7 +98,7 @@ Route::get('/api/diakokoldala', [DiakokOldalaPageController::class, 'isAdminDiak
 Route::get('/indexdiak', [DiakokOldalaPageController::class, 'indexDiak'])->name("indexdiak");
 Route::post('/store-formdiak', [DiakokOldalaPageController::class, 'diakStore']);
 
-Route::post('/store-formdiakcsv', [DiakokOldalaPageController::class, 'diakStoreCSV']);
+Route::post('/store-formdiakcsv', [DiakokOldalaPageController::class, 'diakStoreCSV'])->name("formdiakcsv");
 
 Route::get('/diakokhozzadasacsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakokhozzadasacsv");
 Route::get('/api/diakokhozzadasacsv', [DiakokOldalaPageController::class, 'dikakokHozzaAdasCSVbolPage'])->name("diakokhozzadasacsvv");
@@ -112,7 +112,7 @@ Route::post('/api/diaklistosztalyonkent', [DiakokOldalaPageController::class, 'd
 Route::get('/diaktoroltlist', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
 Route::get('/api/diaklisttorolt', [DiakokOldalaPageController::class, 'diakListtorolt'])->name("diaklisttorolt");
 
-Route::post('/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkent");
+Route::post('/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkenttorolt");
 Route::post('/api/diaklistosztalyonkenttorolt', [DiakokOldalaPageController::class, 'diakListOsztalyonkenttorolt'])->name("diaklistosztalyonkenttorolt");
 
 

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('osztaly')->default('');
             $table->integer('deactivate')->default('0');
-            $table->unique(['name', 'password']);
+            $table->unique(['name', 'email']);
 
         });
 

@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use \Illuminate\Database\QueryException;
 
+
 class DiakokOldalaPageController extends Controller
 {
+
     public function isAdminDiak()
     {
         if (auth()->user()->hasRole('admin')) {
@@ -39,20 +41,32 @@ class DiakokOldalaPageController extends Controller
     {
         if (auth()->user()->hasRole('admin')) {
 
-            if ($this->Osztalyvizsgalat($request->osztaly) === true) {
-                $post = new User;
-                $post->name = $request->name;
-                $post->password = $request->password;
-                $post->osztaly = $request->osztaly;
-                $post->save();
-                return view('diakokoldala')->with('status', 'Diák hozzáadása sikerült.');
-
-            } else {
-
-                return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
+            try{
+                if ($this->Osztalyvizsgalat($request->osztaly) === true) {
+                    $post = new User;
+                    $post->name = $request->name;
+                    $post->email = $request->email ;
+                    $post->password = $request->password;
+                    $post->osztaly = $request->osztaly;
+                    $post->save();
+                    return view('diakokoldala')->with('status', 'Diák hozzáadása sikerült.');
+    
+                } else {
+    
+                    return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
+    
+                }
 
             }
-        } else {
+            catch (QueryException $e) {
+                $datas = "A " . $hanydikSorbanHiba . " van a hiba";
+                return view('hibaoldal', compact("datas"));
+            }
+            
+        } 
+        
+        
+        else {
             return redirect('/');
         }
 
@@ -90,7 +104,7 @@ class DiakokOldalaPageController extends Controller
                     $megvane = utf8_encode(fgets($myFile));
                     if (strlen($megvane) > 0) {
                         $elso = explode(";", $megvane);
-                        if (count($elso) > 2) {
+                        if (count($elso) > 4) {
                             $datas = "Nem jó az oszlopok száma!";
                             $vanehiba = true;
                             break;
@@ -104,8 +118,15 @@ class DiakokOldalaPageController extends Controller
                         if (strlen($elso[1]) < 3) {
                             $datas = "Van egy üres rublika a második oszlopban!";
                             $vanehiba = true;
+                            
                             break;
                         }
+                        if (strlen($elso[2]) ==0) {
+                            $datas = "Van egy üres rublika a harmadik oszlopban!";
+                            $vanehiba = true;
+                            break;
+                        }
+
                         array_push($szoszedet, $elso);
 
                         // echo var_dump($szoszedet[0][1])  . "<br>";
@@ -127,6 +148,7 @@ class DiakokOldalaPageController extends Controller
                         $post = new User;
                         $post->name = $egy[0];
                         $post->password = $jelszo;
+                        $post->email=$egy[2];
                         $post->osztaly = $request->osztaly;
                         try
                         {
@@ -137,7 +159,10 @@ class DiakokOldalaPageController extends Controller
                         }
 
                     }
-
+                    return $this->diakList();
+                }
+                else{
+                    return view('hibaoldal', compact("datas"));
                 }
             } else {
 
@@ -186,6 +211,9 @@ class DiakokOldalaPageController extends Controller
     {
         if (auth()->user()->hasRole('admin')) {
             $osztaly = $request->osztaly;
+            //var_dump($request);
+           // var_dump($request->osztaly);
+            //exit;
             $datas = DB::table('users')->where('osztaly', 'like', $osztaly)->get();
             // ->whereNotNull('osztaly')->get();
 
@@ -222,27 +250,40 @@ class DiakokOldalaPageController extends Controller
 
     public function diakMod(Request $request, $diakid = 0)
     {
-        if ($this->Osztalyvizsgalat($request->osztaly) === true) {
-            $pizza = DB::table('users')->where('id', '=', $diakid)
-                ->update(array
-                    ('name' => $_POST["name"], 'password' => Hash::make($request->password),
-                    'osztaly' => Hash::make($request->osztaly),
-                        'deactivate' => property_exists($request, 'deactivate') ? 1 : 0));
-            /*var_dump($_POST);
-            echo "<br>";
-            var_dump($catprice);*/
-            $status = "Módosítottuk.";
-            $datas2 = DB::table('users')->distinct()
-                ->where('osztaly', '!=', '')
-                ->where('osztaly', 'not like', 'teacher')
-                ->get(['osztaly']);
+        try
+        {
+            if ($this->Osztalyvizsgalat($request->osztaly) === true) {
+                $pizza = DB::table('users')->where('id', '=', $diakid)
+                    ->update(array
+                        ('name' => $request->name, 
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'osztaly' => $request->osztaly,
+                            'deactivate' => isset($request->deactivate) ? 1 : 0));
+                /*var_dump($request->deactivate);
+                echo "<br>";
+                var_dump(isset($request->deactivate) );
+                exit;*/
+                $status = "Módosítottuk.";
+                $datas2 = DB::table('users')->distinct()
+                    ->where('osztaly', '!=', '')
+                    ->where('osztaly', 'not like', 'teacher')
+                    ->get(['osztaly']);
 
-            return view('diakokoldala', compact("status", "datas2"));
-        } else {
+                return view('diakokoldala', compact("status", "datas2"));
+            } else {
 
-            return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
+                return view('diakokoldala')->with('status', $this->Osztalyvizsgalat($request->osztaly));
+
+            }
 
         }
+        catch (QueryException $e) {
+            $datas = "Van ilyen felhasználónév és email páros az adatbázisban.";
+            return view('hibaoldal', compact("datas"));
+        }
+
+            
 
     }
 
@@ -283,7 +324,7 @@ class DiakokOldalaPageController extends Controller
             $datas = "A nyolcadikosokat még nem törölték!";
             return view('hibaoldal', compact("datas"));
         } else 
-        { $result1 = DB::select(" SELECT DISTINCT osztaly FROM users
+        { $result1 = DB::select("SELECT DISTINCT osztaly FROM users
             where osztaly <>''
             and osztaly not like 'teacher'
             and
@@ -308,10 +349,13 @@ class DiakokOldalaPageController extends Controller
 
     public function torles()
     {
+      
+        
         DB::table('users')
             ->where('osztaly', 'like', '8%')
-            ->update(['deactivate' => 1]);
-
+            ->update(['deactivate' => 1,
+            'password' => Hash::make(uniqid())]);
+            
             return view('diakokoldala')->with('status', '');
 
     }
@@ -339,9 +383,7 @@ class DiakokOldalaPageController extends Controller
 
     }
 
-    public function JelszoVizsgalat()
-    {
-
-    }
+    
 
 }
+

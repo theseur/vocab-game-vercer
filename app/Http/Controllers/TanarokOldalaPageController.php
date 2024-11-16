@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use \Illuminate\Database\QueryException;
 
 class TanarokOldalaPageController extends Controller
 {
@@ -53,17 +54,54 @@ class TanarokOldalaPageController extends Controller
 
     public function tanarMod(Request $request, $tanarid = 0)
     {
-
-         DB::table('users')->where('id', '=', $tanarid)
+        try{
+            DB::table('users')->where('id', '=', $tanarid)
             ->update(array
-                ('name' => $_POST["name"], 'password' => Hash::make($request->password),
-                    'deactivate' => property_exists($request, 'deactivate') ? 1 : 0));
+                ('name' => $request->name, 
+                'email'=> $request->email,
+                'password' => Hash::make($request->password),
+                    'deactivate' => isset($request->deactivate) ? 1 : 0));
         /*var_dump($_POST);
         echo "<br>";
         var_dump($catprice);*/
         $datas = DB::table('users')->where('osztaly', 'like', 'teacher')->get();
         $status="Módosítottuk.";
         return view('tanarlist', compact("status", "datas"));
+
+        }
+        catch (QueryException $e) {
+            $datas = "Van ilyen felhasználónév és email páros az adatbázisban.";
+            return view('hibaoldal', compact("datas"));
+        }
+
+        
+
+    }
+
+    public function store(Request $request)
+    {
+
+        try
+        {
+            if (auth()->user()->hasRole('admin')) {
+                $post = new User;
+                $post->name = $request->name;
+                $post->email = $request->email;
+                $post->password = $request->password;
+                $post->osztaly = "teacher";
+                $post->save();
+                return redirect('tanarokoldala')->with('status', 'Tanár hozzáadása sikerült.');
+    
+            } else {
+                return redirect('/');
+            }
+        }
+
+        catch (QueryException $e) {
+            $datas = "Van ilyen felhasználónév és jeszó páros az adatbázisban.";
+            return view('hibaoldal', compact("datas"));
+        }
+        
 
     }
 

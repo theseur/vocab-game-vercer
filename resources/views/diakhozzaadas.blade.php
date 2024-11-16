@@ -11,6 +11,10 @@
            <input type="text" id="name" name="name" class="form-control" required="">
          </div>
          <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" class="form-control" required="">
+        </div>
+         <div class="form-group">
             <label for="nev">Jelszó</label>
             <input type="text" id="password" name="password" class="form-control" required="">
           </div>

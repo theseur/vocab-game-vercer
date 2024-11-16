@@ -6,6 +6,10 @@
        <input type="text" id="name" name="name" class="form-control" required="">
      </div>
      <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="text" id="email" name="email" class="form-control" required="">
+    </div>
+     <div class="form-group">
        <label for="password">Jelszó</label>
        <input type="text" id="password" name="password" class="password" required=""></textarea>
      </div>

@@ -8,6 +8,8 @@
   <br><br>
   <label class="own_label_1" for="nev">Tanár neve:</label><br>
   <input type="text" id="name" name="name" value="{{$tanar->name}}"><br><br>
+  <label class="own_label_1" for="email">Email:</label><br>
+  <input type="text" id="email" name="email" value="{{$tanar->name}}"><br><br>
   <label class="own_label_1" for="password">Jelszó:</label><br>
   <input type="text" id="password" name="password" value=""><br><br>
   <label class="own_label_1" for="deactivate">Deactivate</label>

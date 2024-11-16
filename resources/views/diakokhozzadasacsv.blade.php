@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('store-formdiakcsv')}}" enctype="multipart/form-data">
+    <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{route('formdiakcsv')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="nev">Osztály</label>
