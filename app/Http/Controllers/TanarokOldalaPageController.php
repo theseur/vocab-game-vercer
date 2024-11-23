@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use \Illuminate\Database\QueryException;
+use App\Models\RolesAndModels;
 
 class TanarokOldalaPageController extends Controller
 {
@@ -90,6 +91,11 @@ class TanarokOldalaPageController extends Controller
                 $post->password = $request->password;
                 $post->osztaly = "teacher";
                 $post->save();
+                $role= new RolesAndModels;
+                $role->role_id=3;
+                $role->model_type="App\Models\User";
+                $role->model_id=$post->id;
+                $role->save();
                 return redirect('tanarokoldala')->with('status', 'Tanár hozzáadása sikerült.');
     
             } else {

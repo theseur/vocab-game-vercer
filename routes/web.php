@@ -9,6 +9,7 @@ use App\Http\Controllers\TanarhozzadasPageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TargyController;
 use App\Http\Controllers\TemakorController;
+use App\Http\Controllers\DolgozatSzerkesztesController;
 
 Route::get('/', function () {
     return view('leiras');
@@ -31,7 +32,7 @@ Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadas");
 Route::get('/api/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadasa");
 
-Route::post('/store-form', [TanarokOldalaPageController::class, 'store']);
+Route::post('/store-form', [TanarokOldalaPageController::class, 'store'])->name("store-form");
 
 Route::get('/indexTargy', [TargyController::class, 'indexTargy'])->name("indexTargy");
 Route::post('/store-formtargy', [TargyController::class, 'targyStore']);
@@ -136,8 +137,10 @@ Route::get('/api/torles', [DiakokOldalaPageController::class, 'torles'])->name("
 Route::get('/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
 Route::get('/api/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreLeptetese'])->name("leptetes");
 
-Route::get('/leptetes2', [DiakokOldalaPageController::class, 'leptetes'])->name("leptetes2");
-Route::get('/api/leptetes2', [DiakokOldalaPageController::class, 'leptetes'])->name("leptetes2");
+Route::get('/isTeacher', [DolgozatSzerkesztesController::class, 'isTeacher'])->name("isTeacher");
+Route::get('/api/isTeacher', [DolgozatSzerkesztesController::class, 'isTeacher'])->name("isTeacher");
+
+
 
 
 Route::get('/dashboard', function () {

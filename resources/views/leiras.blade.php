@@ -30,6 +30,9 @@
     <div id="leiras6">
         <a href="/login">Adminisztrátor</a>
        <br>
+       <div id="leiras7">
+        <a href="/login">Tanár</a>
+       <br>
       </div>
       @include('menus.kilepes') 
 </body>
