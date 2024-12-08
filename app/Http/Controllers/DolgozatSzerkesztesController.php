@@ -40,5 +40,40 @@ class DolgozatSzerkesztesController extends Controller
 
     }
 
+      public function temakorList(Request $request)
+    {
+        if (auth()->user()->hasRole('teacher')) {
+
+            $datas2 = DB::table('targytemakor')
+                ->where('szulo', '=', $request->id)
+                ->get(['nev']);
+
+                $datas = DB::table('targytemakor')
+                ->where('id', '=', $request->id)
+                ->get(['nev']);
+            return view("dolgozattemakoroldal", compact("datas2", "datas"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+    public function diakList()
+    {
+        if (auth()->user()->hasRole('teache')) {
+
+            $datas2 = DB::table('users')->distinct()
+                ->where('osztaly', '!=', '')
+                ->where('osztaly', 'not like', 'teacher')
+                ->where('deactivate', '=', '0')
+                ->get(['osztaly']);
+            return view("diaklist", compact("datas2"));
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+
 
 }

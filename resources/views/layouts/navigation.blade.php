@@ -11,9 +11,9 @@
                 </div>
 
                 <!-- Navigation Links -->
-
-                @if (Auth::user()->hasRole('admin'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                @if (Auth::user()->hasRole('admin'))
+                
                     <x-nav-link :href="route('tanarokoldala')" :active="request()->routeIs('tanarokoldala')">
                         Tanárok oldala
                     </x-nav-link>
@@ -22,20 +22,23 @@
                       Diákok oldala
                     </x-nav-link>
 
-                    <x-nav-link :href="route('tantargyoldal')" :active="request()->routeIs('diakokoldala')">
+                    <x-nav-link :href="route('tantargyoldal')" :active="request()->routeIs('tantargyoldal')">
                         Tantárgy lista
                       </x-nav-link>
 
-                      <x-nav-link :href="route('temakoroldal')" :active="request()->routeIs('diakokoldala')">
+                      <x-nav-link :href="route('temakoroldal')" :active="request()->routeIs('temakoroldal')">
                         Témakör lista
                       </x-nav-link>
-                </div>
+                      
+               
  @elseif(Auth::user()->hasRole('teacher'))
-        <li> <a href="">Dolgozat</a></li>
+                <x-nav-link :href="route('dolgozattargyak')" :active="request()->routeIs('dolgozattargyak')">
+                    Dolgozatszerkesztés
+                </x-nav-link>
         <li> <a href="">Eredmények</a> </li>
         
  @endif
-               
+</div>        
             </div>
 
             <!-- Settings Dropdown -->

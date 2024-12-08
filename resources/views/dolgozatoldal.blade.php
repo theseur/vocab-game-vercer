@@ -1,11 +1,11 @@
 <x-app-layout>
   
-  <form class="forms" action= "{{route('diaklistosztalyonkent')}}" method="POST" >
+  <form class="forms" action= "{{route('dolgozattemakorok')}}" method="POST" >
     @csrf <!-- {{ csrf_field() }} -->
 
-<select name="nev">
+<select name="id">
     @foreach($datas2 as $data1)
-        <option value = "{{$data1->nev}}">
+        <option value = "{{$data1->id}}">
             {{$data1->nev}}
         </option>
     @endforeach

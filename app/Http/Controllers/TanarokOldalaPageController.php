@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use \Illuminate\Database\QueryException;
 use App\Models\RolesAndModels;
+use Spatie\Permission\Models\Role;
 
 class TanarokOldalaPageController extends Controller
 {
@@ -85,17 +86,16 @@ class TanarokOldalaPageController extends Controller
         try
         {
             if (auth()->user()->hasRole('admin')) {
+
                 $post = new User;
                 $post->name = $request->name;
                 $post->email = $request->email;
                 $post->password = $request->password;
                 $post->osztaly = "teacher";
                 $post->save();
-                $role= new RolesAndModels;
-                $role->role_id=3;
-                $role->model_type="App\Models\User";
-                $role->model_id=$post->id;
-                $role->save();
+                $role = Role::findByName('teacher');
+                $post->assignRole($role);
+
                 return redirect('tanarokoldala')->with('status', 'Tanár hozzáadása sikerült.');
     
             } else {
@@ -109,6 +109,27 @@ class TanarokOldalaPageController extends Controller
         }
         
 
+    }
+
+    public function rolefeltoltes()
+    {
+        if (auth()->user()->hasRole('admin')) {
+            return view('rolefeltoltes');
+        } else {
+            return redirect('/');
+        }
+
+    }
+
+    public function rolestoreform(Request $request)
+    {
+        
+
+
+        $role= new RolesAndModels;
+        $role->role_id=3;
+        $role->model_type="App\Models\User";
+        $role->model_id=$request->model_id;
     }
 
 }

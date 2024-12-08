@@ -86,10 +86,16 @@ Route::get('/api/tanarszerk/{tanarid}', [TanarokOldalaPageController::class, 'ta
 
 
 Route::post('/tanarmod/{tanarid}', [TanarokOldalaPageController::class, 'tanarMod'])->name("tanarmod");
-Route::post('/api/tanarmod/{tanaridd}', [TanarokOldalaPageController::class, 'tanarMod'])->name("tanarmod");
+Route::post('/api/tanarmod/{tanarid}', [TanarokOldalaPageController::class, 'tanarMod'])->name("tanarmod");
 
 Route::get('/tanarszerk/{tanarid}', [TanarokOldalaPageController::class, 'tanarSzerk'])->name("tanarszerk");
 Route::get('/api/tanarszerk/{tanarid}', [TanarokOldalaPageController::class, 'tanarSzerk'])->name("tanarszerk");
+
+Route::get('/rolefeltoltes', [TanarokOldalaPageController::class, 'rolefeltoltes'])->name("rolefeltoltes");
+Route::get('/api/rolefeltoltes', [TanarokOldalaPageController::class, 'rolefeltoltes'])->name("rolefeltoltes");
+
+Route::post('/rolemod', [TanarokOldalaPageController::class, 'rolestoreform'])->name("rolemod");
+Route::post('/api/rolemod/', [TanarokOldalaPageController::class, 'rolestoreform'])->name("rolemod");
 
 
 
@@ -139,6 +145,16 @@ Route::get('/api/leptetes', [DiakokOldalaPageController::class, 'osztalyokEloreL
 
 Route::get('/isTeacher', [DolgozatSzerkesztesController::class, 'isTeacher'])->name("isTeacher");
 Route::get('/api/isTeacher', [DolgozatSzerkesztesController::class, 'isTeacher'])->name("isTeacher");
+
+Route::get('/dolgozattargyak', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("dolgozattargyak");
+Route::get('/api/dolgozattargyak', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("dolgozattargyak");
+
+Route::get('/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
+Route::get('/api/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
+
+Route::get('/osztalylistk', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("osztalylist");
+Route::get('/api/osztalylist', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("osztalylist");
+
 
 
 
