@@ -149,11 +149,14 @@ Route::get('/api/isTeacher', [DolgozatSzerkesztesController::class, 'isTeacher']
 Route::get('/dolgozattargyak', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("dolgozattargyak");
 Route::get('/api/dolgozattargyak', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("dolgozattargyak");
 
-Route::get('/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
-Route::get('/api/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
+Route::post('/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
+Route::post('/api/dolgozattemakorok', [DolgozatSzerkesztesController::class, 'temakorList'])->name("dolgozattemakorok");
 
-Route::get('/osztalylistk', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("osztalylist");
-Route::get('/api/osztalylist', [DolgozatSzerkesztesController::class, 'tantargyList'])->name("osztalylist");
+Route::post('/osztalylist', [DolgozatSzerkesztesController::class, 'diakList'])->name("osztalylist");
+Route::post('/api/osztalylist', [DolgozatSzerkesztesController::class, 'diakList'])->name("osztalylist");
+
+Route::post('/datummeghatarozas', [DolgozatSzerkesztesController::class, 'datummeghatarozas'])->name("datummeghatarozas");
+Route::post('/api/datummeghatarozas', [DolgozatSzerkesztesController::class, 'datummeghatarozas'])->name("datummeghatarozas");
 
 
 

@@ -12,9 +12,16 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use \Illuminate\Database\QueryException;
+use App\Services\ClassServices;
 
 class DiakokOldalaPageController extends Controller
 {
+    protected $classService;
+
+    public function __construct(ClassServices $classService)
+    {
+        $this-> classService = $classService;
+    }
 
     public function isAdminDiak()
     {
@@ -176,17 +183,9 @@ class DiakokOldalaPageController extends Controller
 
     public function diakList()
     {
-        if (auth()->user()->hasRole('admin')) {
-
-            $datas2 = DB::table('users')->distinct()
-                ->where('osztaly', '!=', '')
-                ->where('osztaly', 'not like', 'teacher')
-                ->where('deactivate', '=', '0')
-                ->get(['osztaly']);
-            return view("diaklist", compact("datas2"));
-        } else {
-            return redirect('/');
-        }
+        
+        return $this->classService->diakList("diaklist");
+        
 
     }
 
