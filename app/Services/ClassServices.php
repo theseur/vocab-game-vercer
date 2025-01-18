@@ -14,7 +14,7 @@ class ClassServices
 {
     public function diakList($setView)
     {
-        if (auth()->user()->hasRole('admin')) {
+        if (auth()->user()->hasRole('admin')||auth()->user()->hasRole('teacher')) {
 
             $datas2 = DB::table('users')->distinct()
                 ->where('osztaly', '!=', '')
@@ -22,7 +22,9 @@ class ClassServices
                 ->where('deactivate', '=', '0')
                 ->get(['osztaly']);
             return view($setView, compact("datas2"));
-        } else {
+        } 
+        
+        else {
             return redirect('/');
         }
 

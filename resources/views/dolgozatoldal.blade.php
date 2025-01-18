@@ -1,5 +1,9 @@
 <x-app-layout>
-  
+   
+    {{$status}}
+    <br>
+    <br>
+
   <form class="forms" action= "{{route('dolgozattemakorok')}}" method="POST" >
     @csrf <!-- {{ csrf_field() }} -->
 

@@ -27,6 +27,7 @@ class DolgozatSzerkesztesController extends Controller
 
     public function isTeacher()
     {
+      
         if (auth()->user()->hasRole('teacher')) {
             return view('dolgozatoldal')->with('status', '');
         } else {
@@ -35,15 +36,19 @@ class DolgozatSzerkesztesController extends Controller
 
     }
 
-    public function tantargyList()
+    public function tantargyList($status="")
     {
+        $user = auth()->user()->id;
+       // var_dump($user);
+        //dd($user);
+        //exit;
         if (auth()->user()->hasRole('teacher')) {
 
             $datas2 = DB::table('targytemakor')->distinct()
                 ->whereNull('szulo')
                 ->where('deactivate', '=', '0')
                 ->get(['nev', 'id']);
-            return view("dolgozatoldal", compact("datas2"));
+            return view("dolgozatoldal", compact("datas2","user","status"));
         } else {
             return redirect('/');
         }
@@ -84,8 +89,14 @@ class DolgozatSzerkesztesController extends Controller
         $post->datum = $request->datum;
         $post->osztaly=$request->osztaly;
         $post->temakorid=$request->session()->get('temakorid');
-        $post->tanarid=auth()->id();
+        $post->tanarid=auth()->user()->id;
         $post->save();
+        $datas = DB::table('targytemakor')
+        ->where('id', '=',   $post->temakorid)
+        ->get(['nev' ]);
+        $uzenet="A dolgozatot sikeresen rögzítettük! ".$post->datum ." ".$post->osztaly." ".$datas[0]->nev;
+
+        return $this->tantargyList($uzenet);
 
     }
 
