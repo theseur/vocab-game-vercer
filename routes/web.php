@@ -158,6 +158,8 @@ Route::post('/api/osztalylist', [DolgozatSzerkesztesController::class, 'diakList
 Route::post('/datummeghatarozas', [DolgozatSzerkesztesController::class, 'datummeghatarozas'])->name("datummeghatarozas");
 Route::post('/api/datummeghatarozas', [DolgozatSzerkesztesController::class, 'datummeghatarozas'])->name("datummeghatarozas");
 
+Route::get('ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido");
+Route::get('/api/ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido");
 
 
 

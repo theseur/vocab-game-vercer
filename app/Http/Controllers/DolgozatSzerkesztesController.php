@@ -14,6 +14,8 @@ use \Illuminate\Database\QueryException;
 use App\Models\Targytemakor;
 use App\Services\ClassServices;
 use App\Models\Ropbeallitas;
+use Carbon\Carbon;
+use DateTime;
 
 class DolgozatSzerkesztesController extends Controller
 {
@@ -83,20 +85,97 @@ class DolgozatSzerkesztesController extends Controller
 
     }
 
+ 
+
     public function datummeghatarozas(Request $request)
     {
         $post = new Ropbeallitas;
-        $post->datum = $request->datum;
+        $ropdoliidopont=str_replace('T',' ',$request->datum);
+            $ropdoliidopont.=':00';
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $ropdoliidopont);
+        $date1=DateTime::createFromFormat('Y-m-d H:i:s', $ropdoliidopont);
+        $date1= date_modify($date1, "+1 hour");
+        $post->datum = $ropdoliidopont;
         $post->osztaly=$request->osztaly;
         $post->temakorid=$request->session()->get('temakorid');
         $post->tanarid=auth()->user()->id;
-        $post->save();
-        $datas = DB::table('targytemakor')
+        $datas = DB::table('ropbeallitas')
+        ->where('datum', '>=',  $date)
+        ->where('datum', '<',  $date1)
+        ->get(['datum', 'osztaly']);
+
+       
+        if($datas->count()==0)
+            {
+            try
+            {
+                $post->save();
+
+            }
+            catch(Throwable $e)
+            {
+                $datas='Ennek az osztálynak van már ebben az időpontban röpdlgozata!';
+                return view('hibaoldal', compact("datas"));
+            }
+            }
+            else
+            {
+                $datas='Ennek az osztálynak van már ebben az időpontban röpdlgozata!';
+                return view('hibaoldal', compact("datas"));
+            }
+
+
+        
+
+
+        $datas3 = DB::table('targytemakor')
         ->where('id', '=',   $post->temakorid)
         ->get(['nev' ]);
-        $uzenet="A dolgozatot sikeresen rögzítettük! ".$post->datum ." ".$post->osztaly." ".$datas[0]->nev;
+        $uzenet="A dolgozatot sikeresen rögzítettük! ".$post->datum ." ".$post->osztaly." ".$datas3[0]->nev;
 
         return $this->tantargyList($uzenet);
+
+    }
+
+    public function  ido()
+    {
+        $current = Carbon::now();
+        $current=$current->format('Y-m-d H:i:s');
+        $currentTime = Carbon::now()->toTimeString();
+        $now = Carbon::now()->toDateString() .' '.  substr($currentTime, 0, strrpos( $currentTime, ':') ) ;
+        $dateTimeNew = Carbon::now()->addHour();
+        $dateTimeNew=$dateTimeNew->format('Y-m-d H:i:s');
+        $dateTimeNewToString = Carbon::now()->addHour()->toTimeString();
+        $szavak=array(
+            "jelengi idő", 
+        $current, 
+        "Az idő stringgé alakítva",
+        $currentTime,
+        "óra és perc",
+        $now,
+        "jelengi idő +1óra",
+        $dateTimeNew,
+        "jelengi idő +1óra stringgé alakítva",
+        $dateTimeNewToString
+
+        
+    );
+    $datas2 = DB::table('ropbeallitas')
+    ->where('datum', '>=',  $current)
+    
+    ->get(['datum', 'osztaly']);
+
+    $datas = DB::table('ropbeallitas')
+    ->where('datum', '>=',  $current)
+    ->where('datum', '<',  $dateTimeNew)
+    ->get(['datum', 'osztaly']);
+        
+    return view("idooldal")
+    ->with('szavak', $szavak)
+    ->with(compact("datas2"))
+    ;
+
+       // return view("idooldal", compact("current", "currentTime", "now", "dateTimeNew", "dateTimeNewToString" ));
 
     }
 

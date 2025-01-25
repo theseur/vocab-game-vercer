@@ -35,6 +35,9 @@
                 <x-nav-link :href="route('dolgozattargyak')" :active="request()->routeIs('dolgozattargyak')">
                     Dolgozatszerkesztés
                 </x-nav-link>
+                <x-nav-link :href="route('ido')" :active="request()->routeIs('ido')">
+                    Időkimutatás
+                </x-nav-link>
         <li> <a href="">Eredmények</a> </li>
         
  @endif

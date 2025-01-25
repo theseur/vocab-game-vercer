@@ -22,11 +22,10 @@
         <a href="/api/index">linkre</a>!
     </div>
     <div id="leiras4">
-        Dolgozat<br>
+        <a href="/login">Dolgozat</a>
+        <br>
     </div>
-    <div id="leiras5">
-      Tanároknak<br>
-    </div>
+    
     <div id="leiras6">
         <a href="/login">Adminisztrátor</a>
        <br>
