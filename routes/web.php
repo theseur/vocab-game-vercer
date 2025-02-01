@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TargyController;
 use App\Http\Controllers\TemakorController;
 use App\Http\Controllers\DolgozatSzerkesztesController;
+use App\Http\Controllers\DolgozatBlade ;
 
 Route::get('/', function () {
     return view('leiras');
@@ -161,7 +162,8 @@ Route::post('/api/datummeghatarozas', [DolgozatSzerkesztesController::class, 'da
 Route::get('ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido");
 Route::get('/api/ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido");
 
-
+Route::get('dolgozatdiak', [DolgozatBlade::class, 'ido'])->name("dolgozatdiak");
+Route::get('/api/dolgozatdiak', [DolgozatBlade::class, 'ido'])->name("dolgozatdiak");
 
 
 Route::get('/dashboard', function () {
