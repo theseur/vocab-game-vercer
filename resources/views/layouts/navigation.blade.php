@@ -40,7 +40,7 @@
                 </x-nav-link>
         <li> <a href="">Eredmények</a> </li>
         
- @endif
+
 
  @elseif(Auth::user()->hasRole('user'))
  <x-nav-link :href="route('dolgozatdiak')" :active="request()->routeIs('dolgozatdiak')">

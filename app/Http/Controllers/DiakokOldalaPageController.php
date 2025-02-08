@@ -147,13 +147,14 @@ class DiakokOldalaPageController extends Controller
 
                     $vanehiba2 = false;
                     $hanydikSorbanHiba = 0;
+                    DB::beginTransaction(); 
                     foreach ($szoszedet as $egy) {
                         $jelszo = trim($egy[1]);
                         $hanydikSorbanHiba++;
                         $post = new User;
-                        $post->name = $egy[0];
+                        $post->name = trim($egy[0]);
                         $post->password = $jelszo;
-                        $post->email = $egy[2];
+                        $post->email = trim($egy[2]);
                         $post->osztaly = $request->osztaly;
                         try
                         {
@@ -162,11 +163,12 @@ class DiakokOldalaPageController extends Controller
                             $post->assignRole($role);
 
                         } catch (QueryException $e) {
-                            $datas = "A " . $hanydikSorbanHiba . " van a hiba";
+                            $datas = "A " . $hanydikSorbanHiba . " sorban van a hiba.";
                             return view('hibaoldal', compact("datas"));
                         }
 
                     }
+                    DB::commit(); 
                     return $this->diakList();
                 } else {
                     return view('hibaoldal', compact("datas"));
