@@ -28,6 +28,9 @@ Route::get('/api/index', function () {
 Route::get('/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 
+Route::get('/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
+Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozatk");
+
 
 
 Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadas");
@@ -164,6 +167,8 @@ Route::get('/api/ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido
 
 Route::get('dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
 Route::get('/api/dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
+
+
 
 
 Route::get('/dashboard', function () {
