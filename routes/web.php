@@ -11,6 +11,7 @@ use App\Http\Controllers\TargyController;
 use App\Http\Controllers\TemakorController;
 use App\Http\Controllers\DolgozatSzerkesztesController;
 use App\Http\Controllers\DolgozatBlade ;
+use App\Http\Controllers\RopbeallitasApiController;
 
 Route::get('/', function () {
     return view('leiras');
@@ -29,7 +30,7 @@ Route::get('/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 
 Route::get('/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
-Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozatk");
+Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 
 
 

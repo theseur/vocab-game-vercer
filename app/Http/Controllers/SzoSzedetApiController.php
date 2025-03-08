@@ -20,8 +20,11 @@ class SzoSzedetApiController extends Controller
     public function szoSzedetDolgozatApi($temakorid = 0)
     {
 
-        $otszo=DB::table('szoszedet')->where('temakorid', '=', $temakorid)->first()
+        $otszo=DB::table('szoszedet')->where('temakorid', '=', $temakorid)
         ->inRandomOrder()->limit(5)->get();
         return response()->json($otszo);
     }
+
+
+    
 }

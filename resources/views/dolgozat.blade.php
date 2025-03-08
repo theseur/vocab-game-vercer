@@ -1,33 +1,12 @@
-<x-app-layout>
-   
-  
-    {{$status}}
-
-    @if(count($status) > 0)
-    
-   
-
- 
-   <br>kiserlet<br>
-   <input type="hidden" id="temakorid" name="temakorid" value="{{$status[0]->temakorid}}"><br><br>
-   {{$status[0]->temakorid}} 
-   
-
-  
-
-   
-  
- 
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="/css/stilus.css">
       <title>Rómeó és Júlia</title>
-      <script src="/js/bird.js" type="module" defer></script>
-      <script src="/js/ladder.js" type="module" defer></script>
+      <script src="/js/ropdolgozatbird.js" type="module" defer></script>
+      <script src="/js/ropdolgozatladder.js" type="module" defer></script>
       <script src="/js/wordChangeDolgozat.js" type="module" defer></script>
       <script src="/js/romeo.js" type="module" defer></script>
       
@@ -36,6 +15,8 @@
   </head>
   
   <body>
+    <input type="hidden" id="temakorid" name="temakorid" value="{{$status[0]->temakorid}}"><br><br>
+    {{$status[0]->temakorid}} 
       <div id="castle-container">
           <img src="/img/castle.svg" id="castle" alt="">
           </div>
@@ -91,14 +72,9 @@
   
           </div>
   
-          <div class="kilepes">
-              @include('menus.kilepes') 
-          </div>
+    
       <div id="sziv">   
       </div>
   </body>
   </html>
-
-  @endif
-</x-app-layout>
 
