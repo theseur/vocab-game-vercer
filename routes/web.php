@@ -32,6 +32,8 @@ Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 
+Route::get('/ropdolgozatFeltoltes', [RopbeallitasApiControllerr::class, 'ropdolgozatFeltoltes'])->name("ropdolgozatFeltoltes");
+Route::get('/api/ropdolgozatFeltoltes', [RopbeallitasApiController::class, 'ropdolgozatFeltoltes'])->name("ropdolgozatFeltoltes");
 
 
 Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadas");

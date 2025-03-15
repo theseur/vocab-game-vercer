@@ -15,7 +15,9 @@
   </head>
   
   <body>
-    <input type="hidden" id="temakorid" name="temakorid" value="{{$status[0]->temakorid}}"><br><br>
+    <input type="hidden" id="temakorid" name="temakorid" value="{{$status[0]->temakorid}}">
+    <input type="hidden" id="userid" name="userid" value="{{$userid}}">
+
     {{$status[0]->temakorid}} 
       <div id="castle-container">
           <img src="/img/castle.svg" id="castle" alt="">

@@ -45,16 +45,17 @@ class DolgozatBlade extends Controller
        
         $date1=Carbon::now()->addHour()->setMinute(00)->setSecond(00)->toDateTimeString();
 
-        $datas = DB::table('ropbeallitas')
+        $status = DB::table('ropbeallitas')
             ->join('targytemakor', 'targytemakor.id', '=', 'ropbeallitas.temakorid')
             ->where('osztaly', 'like', $osztaly)
             ->where('datum', '>=',  $date)
             ->where('datum','<',$date1)
-            ->get('ropbeallitas.temakorid');
+            ->get(['ropbeallitas.temakorid', 'ropbeallitas.id']);
            // dd($date);
            // dd($datas);
-
-        return view('dolgozat')->with('status', $datas);
+        $userid=auth()->user()->id;
+        
+        return view('dolgozat')->with(compact("status","userid"));
     }
 
 }
