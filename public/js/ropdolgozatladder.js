@@ -1,4 +1,4 @@
-import { megoldas, wordRequest } from "./wordChangeDolgozat.js";
+import { megoldas, wordRequest, joId } from "./wordChangeDolgozat.js";
 import { flySpeed, resetBirdposition } from "./bird.js";
 
 
@@ -14,6 +14,9 @@ let pont = 0;
 let pontDiv = document.getElementById("pont");
 let heart = document.getElementById("sziv");
 let felhId = document.getElementById("userid");
+let ropBeAllId = document.getElementById("ropbeallitasid");
+let ropDoliId = 0;
+
 
 function rotateLadder(e) {
 
@@ -32,9 +35,13 @@ function rotateLadder(e) {
     flySpeed(0);
 
     if (e.currentTarget.dataset.divIndex == megoldas()) {
-        fetch('/api/ropdolgozatFeltoltes/?kezdesido=' + Date.now() + 'userid=' + felhId.value+'talalat=1')
+        fetch('/api/ropdolgozatFeltoltes/?kezdesido=' + Date.now()+ '&userid=' + felhId.value + '&talalat=1'
+            + '&szoszedetid=' + joId() + '&ropbeallitasid=' + ropBeAllId.value)
             .then(response => response.json())
             .then(data => {
+                if (ropDoliId == 0) {
+                    ropDoliId = data.id;
+                }
 
             }
             );
@@ -50,6 +57,16 @@ function rotateLadder(e) {
                     $('#sziv').attr('style', 'display: none !important');
                     resetBirdposition();
                     if (kiserletekszama > 5) {
+                        fetch('/api/feladatFeltoltes/?userid=' + felhId.value +'&ropdolgozatid='+ropDoliId
+                            +'&pontszam='+pont
+                        )
+                            .then(response => response.json())
+                            .then(data => {
+                                //window.location.replace('https://www.google.com');
+
+                            }
+                            );
+                            
 
                     }
                 });
@@ -60,22 +77,36 @@ function rotateLadder(e) {
     }
 
     else {
-        fetch('/api/ropdolgozatFeltoltes/?kezdesido=' + Date.now() + 'userid=' + felhId.value+'talalat=0')
-        .then(response => response.json())
-        .then(data => {
+        fetch('/api/ropdolgozatFeltoltes/?kezdesido=' + Date.now() + '&userid=' + felhId.value + '&talalat=0'
+            + '&szoszedetid=' + joId() + '&ropbeallitasid=' + ropBeAllId.value)
+            .then(response => response.json())
+            .then(data => {
+                if (ropDoliId == 0) {
+                    ropDoliId = data.id;
+                }
 
-        }
-        );
+            }
+            );
         alert("nem jó");
         visszatesz();
         wordRequest();
+        if (kiserletekszama > 5) {
+            fetch('/api/feladatFeltoltes/?userid=' + felhId.value +'&ropdolgozatid='+ropDoliId
+                +'&pontszam='+pont
+            )
+                .then(response => response.json())
+                .then(data => {
+
+                }
+                );
+                window.location.replace('www.google.com');
+
+        }
+        
     }
     flySpeed(5);
 
-    if(kiserletekszama>5)
-    {
 
-    }
 
 }
 

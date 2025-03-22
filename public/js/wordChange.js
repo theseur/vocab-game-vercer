@@ -1,8 +1,11 @@
 let megoldasVar=-1;
+
 export function megoldas()
 {
   return megoldasVar;
 }
+
+
 
 export function wordRequest()
 {
@@ -13,6 +16,7 @@ export function wordRequest()
         //console.log(data );
        let x= Math.floor(Math.random()*5);
        megoldasVar=x;
+      
         $("#white-flag div").html(data[x].angol);
 
 
@@ -20,7 +24,7 @@ export function wordRequest()
           //  console.log( index + ": " + $( this ).text() );
             $( this ).text(data[index].magyar) ;
           });
-        
+       
         
     }
 

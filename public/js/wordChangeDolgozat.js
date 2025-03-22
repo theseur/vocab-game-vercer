@@ -1,7 +1,14 @@
 let megoldasVar=-1;
+let szoSzedetId=-1;
+
 export function megoldas()
 {
   return megoldasVar;
+}
+
+export function joId()
+{
+  return szoSzedetId;
 }
 
 export function wordRequest()
@@ -14,6 +21,7 @@ export function wordRequest()
         //console.log(data );
        let x= Math.floor(Math.random()*5);
        megoldasVar=x;
+       szoSzedetId=data[x].id;
         $("#white-flag div").html(data[x].angol);
 
 

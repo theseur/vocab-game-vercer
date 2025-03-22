@@ -122,6 +122,19 @@
 
 }
 
+#szszedetid
+{
+    
+    /*border: 1px solid black;*/
+    font-size: 30pt;
+    color: rgb(242, 8, 8);
+    font-weight: bold;
+    text-shadow: #FC0 1px 0 10px;
+    margin-top: 60px;
+    text-align: right;
+
+}
+
 #bird
 {
     background-image: url("/img/100pxbird.gif");

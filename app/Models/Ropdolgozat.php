@@ -9,6 +9,7 @@ class Ropdolgozat extends Model
 {
     protected $table = 'ropdolgozat';
     protected $primaryKey = 'id';
+    protected $fillable=['userid','talalat','szoszedetid','kezdesido','ropbeallitasid'];
     public $incrementing = true;
     public $timestamps=false;
 

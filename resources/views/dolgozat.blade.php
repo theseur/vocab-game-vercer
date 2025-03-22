@@ -16,7 +16,9 @@
   
   <body>
     <input type="hidden" id="temakorid" name="temakorid" value="{{$status[0]->temakorid}}">
+    <input type="hidden" id="ropbeallitasid" name="ropbeallitasid" value="{{$status[0]->id}}">
     <input type="hidden" id="userid" name="userid" value="{{$userid}}">
+
 
     {{$status[0]->temakorid}} 
       <div id="castle-container">

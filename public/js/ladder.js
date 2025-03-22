@@ -1,4 +1,4 @@
-import{megoldas, wordRequest} from"./wordChange.js";
+import{megoldas, wordRequest, szoSzedetFuggv} from"./wordChange.js";
 import{flySpeed, resetBirdposition} from"./bird.js";
 
 
@@ -35,6 +35,7 @@ function rotateLadder(e)
                     pont++;
                     pontDiv.innerHTML="Pontjaid száma: "+pont;
                     $('#sziv').attr('style', 'display: block !important');
+                    $('#szszedetid').attr('style', 'display: block !important');
                     elemMozgatasVizszintesen("#romeo",letrahelyepx+"px",()=>{
                         elemMozgatasFuggolegesen("#romeo", "120px",()=>{
                             visszatesz(()=>{

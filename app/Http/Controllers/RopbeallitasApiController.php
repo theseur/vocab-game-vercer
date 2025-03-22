@@ -25,19 +25,24 @@ class RopbeallitasApiController extends Controller
 {
     public function ropdolgozatFeltoltes(Request $request)
     {
-        $feladat =Feladatok::create([
+        $feladat =Ropdolgozat::create([
             'userid' => $request->userid,
+            'talalat'=>$request->talalat,
+            'szoszedetid'=>$request->szoszedetid,
+            'kezdesido'=>date('Y-m-d'),
+            'ropbeallitasid'=>$request->ropbeallitasid
             
         ]);
 
-        return response()->json();
+        return response()->json($feladat);
     }
 
     public function feladatFeltoltes(Request $request)
     {
-        $ropdoli =Ropdolgozat::create([
+        $ropdoli =Feladatok::create([
             'userid' => $request->userid,
-            'pontszam'=>$request->pontok
+            'pontszam'=>$request->pontszam,
+            'ropdolgozatid'=>$request->ropdolgozatid
         ]);
 
         return response()->json();
