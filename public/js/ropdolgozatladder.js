@@ -62,7 +62,7 @@ function rotateLadder(e) {
                         )
                             .then(response => response.json())
                             .then(data => {
-                                //window.location.replace('https://www.google.com');
+                                window.location.replace('logout');
 
                             }
                             );

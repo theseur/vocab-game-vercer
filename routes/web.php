@@ -12,6 +12,7 @@ use App\Http\Controllers\TemakorController;
 use App\Http\Controllers\DolgozatSzerkesztesController;
 use App\Http\Controllers\DolgozatBlade ;
 use App\Http\Controllers\RopbeallitasApiController;
+use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('leiras');
@@ -32,8 +33,11 @@ Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 
-Route::get('/ropdolgozatFeltoltes', [RopbeallitasApiControllerr::class, 'ropdolgozatFeltoltes'])->name("ropdolgozatFeltoltes");
+Route::get('/ropdolgozatFeltoltes', [RopbeallitasApiController::class, 'ropdolgozatFeltoltes'])->name("ropdolgozatFeltoltes");
 Route::get('/api/ropdolgozatFeltoltes', [RopbeallitasApiController::class, 'ropdolgozatFeltoltes'])->name("ropdolgozatFeltoltes");
+
+Route::get('/feladatFeltoltes', [RopbeallitasApiController::class, 'feladatFeltoltes'])->name("feladatFeltoltes");
+Route::get('/api/feladatFeltoltes', [RopbeallitasApiController::class, 'feladatFeltoltes'])->name("feladatFeltoltes");
 
 
 Route::get('/tanarhozzaadas', [TanarhozzadasPageController::class, 'isAdminTanarHozzaAdas'])->name("tanarhozzaadas");
@@ -171,7 +175,8 @@ Route::get('/api/ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido
 Route::get('dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
 Route::get('/api/dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
 
-
+Route::get('logout', [LogoutController::class, 'logout'])->name("logout");
+Route::get('/api/logout', [LogoutController::class, 'logout'])->name("logout");
 
 
 Route::get('/dashboard', function () {
