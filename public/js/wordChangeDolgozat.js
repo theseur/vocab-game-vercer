@@ -11,7 +11,7 @@ export function joId()
   return szoSzedetId;
 }
 
-export function wordRequest()
+export function wordRequestDolgozat()
 {
     let id=document.getElementById("temakorid");
     fetch('/api/ropdolgozat/'+id.value)
@@ -37,4 +37,4 @@ export function wordRequest()
 
 }
 
-wordRequest();
+wordRequestDolgozat();

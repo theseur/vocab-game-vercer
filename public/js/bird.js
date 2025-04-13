@@ -27,4 +27,8 @@ export function flySpeed(newFlySpeed)
     flyingSpeed=newFlySpeed;
     birdPosition=0;
 }
-setInterval(birdMovement,33);
+
+if(window.location.pathname==="/api/index")
+    {
+        setInterval(birdMovement,33);
+    }

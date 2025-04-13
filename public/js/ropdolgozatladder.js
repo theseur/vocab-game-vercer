@@ -1,5 +1,5 @@
-import { megoldas, wordRequest, joId } from "./wordChangeDolgozat.js";
-import { flySpeed, resetBirdposition } from "./bird.js";
+import { megoldas, wordRequestDolgozat, joId } from "./wordChangeDolgozat.js";
+import { flySpeed, resetBirdposition } from "./ropdolgozatbird.js";
 
 
 
@@ -52,7 +52,7 @@ function rotateLadder(e) {
         elemMozgatasVizszintesen("#romeo", letrahelyepx + "px", () => {
             elemMozgatasFuggolegesen("#romeo", "120px", () => {
                 visszatesz(() => {
-                    wordRequest();
+                    wordRequestDolgozat();
                     alert("Rómeó szerelmet tudott vallani, kaptál egy pontot!");
                     $('#sziv').attr('style', 'display: none !important');
                     resetBirdposition();
@@ -66,8 +66,6 @@ function rotateLadder(e) {
 
                             }
                             );
-                            
-
                     }
                 });
             })
@@ -89,7 +87,7 @@ function rotateLadder(e) {
             );
         alert("nem jó");
         visszatesz();
-        wordRequest();
+        wordRequestDolgozat();
         if (kiserletekszama > 5) {
             fetch('/api/feladatFeltoltes/?userid=' + felhId.value +'&ropdolgozatid='+ropDoliId
                 +'&pontszam='+pont
@@ -147,7 +145,10 @@ function elemMozgatasFuggolegesen(htmlSelector, position, kovetkezoMozgas) {
 
 }
 
+if(window.location.pathname==="/api/dolgozatdiak")
+    {
+        $(".ladder").on("click", rotateLadder);
+    }
 
-
-$(".ladder").on("click", rotateLadder);
+//$(".ladder").on("click", rotateLadder);
 

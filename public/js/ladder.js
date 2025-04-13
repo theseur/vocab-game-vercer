@@ -1,4 +1,4 @@
-import{megoldas, wordRequest, szoSzedetFuggv} from"./wordChange.js";
+import{megoldas, wordRequest} from"./wordChange.js";
 import{flySpeed, resetBirdposition} from"./bird.js";
 
 
@@ -109,7 +109,10 @@ function elemMozgatasFuggolegesen(htmlSelector, position, kovetkezoMozgas)
 
 }
 
+if(window.location.pathname==="/api/index")
+{
+    $(".ladder").on("click", rotateLadder);
+}
 
 
-$(".ladder").on("click", rotateLadder);
 

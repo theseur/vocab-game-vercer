@@ -1,4 +1,4 @@
-import{wordRequest} from "./wordChangeDolgozatjs";
+import{wordRequestDolgozat} from "./wordChangeDolgozat.js";
 
 let birdPosition=0;
 let flyingSpeed=5;
@@ -16,7 +16,7 @@ function birdMovement()
     if(birdPosition>window.innerWidth)
     {
         birdPosition=0;
-        wordRequest();
+        wordRequestDolgozat();
     }
     birdDiv.style.left=birdPosition+"px";
 
@@ -27,4 +27,8 @@ export function flySpeed(newFlySpeed)
     flyingSpeed=newFlySpeed;
     birdPosition=0;
 }
-setInterval(birdMovement,33);
+
+if(window.location.pathname==="/api/dolgozatdiak")
+    {
+        setInterval(birdMovement,33);
+    }
