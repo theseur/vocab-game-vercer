@@ -38,6 +38,9 @@
                 <x-nav-link :href="route('ido')" :active="request()->routeIs('ido')">
                     Időkimutatás
                 </x-nav-link>
+                 <x-nav-link :href="route('megIratott')" :active="request()->routeIs('ido')">
+                    Eredmények kiíratása
+                </x-nav-link>
         <li> <a href="">Eredmények</a> </li>
         
 

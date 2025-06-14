@@ -13,6 +13,7 @@ use App\Http\Controllers\DolgozatSzerkesztesController;
 use App\Http\Controllers\DolgozatBlade ;
 use App\Http\Controllers\RopbeallitasApiController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\KiiratasController;
 
 Route::get('/', function () {
     return view('leiras');
@@ -174,6 +175,23 @@ Route::get('/api/ido', [DolgozatSzerkesztesController::class, 'ido'])->name("ido
 
 Route::get('dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
 Route::get('/api/dolgozatdiak', [DolgozatBlade::class, 'dolgozatdiak'])->name("dolgozatdiak");
+
+Route::get('/isTeacheEredmeny', [KiiratasController::class, 'isTeacher'])->name("isTeacheEredmeny");
+Route::get('/api/isTeacheEredmeny', [KiiratasController::class, 'isTeacher'])->name("isTeacheEredmeny");
+
+Route::get('/megIratott', [KiiratasController::class, 'megIratott'])->name("megIratott");
+Route::get('/api/megIratott', [KiiratasController::class, 'megIratott'])->name("megIratott");
+
+Route::post('/eredmKezdIdo', [KiiratasController::class, 'eredmKezdIdo'])->name("eredmKezdIdo");
+Route::post('/api/eredmKezdIdo', [KiiratasController::class, 'eredmKezdIdo'])->name("eredmKezdIdo");
+
+Route::post('/tanuloNevek', [KiiratasController::class, 'tanuloNevek'])->name("tanuloNevek");
+Route::post('/api/tanuloNevek', [KiiratasController::class, 'tanuloNevek'])->name("tanuloNevek");
+
+Route::post('/eredmKiIratas', [KiiratasController::class, 'eredmKiIratas'])->name("eredmKiIratas");
+Route::post('/api/eredmKiIratas', [KiiratasController::class, 'eredmKiIratas'])->name("eredmKiIratas");
+
+
 
 Route::get('logout', [LogoutController::class, 'logout'])->name("logout");
 Route::get('/api/logout', [LogoutController::class, 'logout'])->name("logout");
