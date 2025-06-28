@@ -18,16 +18,19 @@
                 <td class="td_1"> {{$data->name}} </td>
                 <td class="td_2"> {{$data->pontszam}} </td>
               
-                </td>
-        
-
                 </tr>
                 @endforeach
             </div>
+           
             <form class="forms" action= "{{route('eredmKiIratas')}}" method="POST" >
                         @csrf <!-- {{ csrf_field() }} -->
                 <input type="hidden" id="osztaly" name="osztaly" value="{{$results[0]->osztaly}}">
                    <input type="hidden" id="datum" name="datum" value="{{$results[0]->datum}}">
+                    <select name="filetype" id="filetype">
+                <option value="txt">txt</option>
+                <option value="csv">csv</option>
+               
+                </select>
                    
                     <div class="gombok_2">
                         <input class="btn btn-success" type="submit" value="Submit">

@@ -98,11 +98,14 @@ class KiiratasController extends Controller
               ->where('ropbeallitas.osztaly', 'like', '%'.$request->osztaly.'%')
                 ->where('ropbeallitas.datum', '=', $request->datum)
             ->get();
-
+                //dd($request);
+            if($request->filetype=="csv")
+            {
+                
             $csvFileName = 'user.csv';
                 $csvFile = fopen($csvFileName, 'w');
                 $headers = array_keys((array)  $results[0]); // Get the column headers from the first row
-                fputcsv($csvFile, $headers.';');
+                fputcsv($csvFile, $headers,';');
 
                 foreach ($results as $row) {
                     fputcsv($csvFile, (array) $row,';');
@@ -112,6 +115,24 @@ class KiiratasController extends Controller
 
                 // Download the CSV file
                 return Response::download(public_path($csvFileName))->deleteFileAfterSend(true);
+            }
+            else{
+                $fileName = 'Eredmeny.txt';
+                $txtFile = fopen($fileName, 'w');
+                //$headers = array_keys((array)  $results[0]); // Get the column headers from the first row
+                //fputs($txtFile, $headers,';');
+
+                foreach ($results as $row) {
+                    fputs($txtFile,  $row->name.';'.$row->pontszam.'\n');
+                }
+
+                fclose($txtFile);
+
+                return Response::download(public_path($fileName))->deleteFileAfterSend(true);
+
+            }
+
+
     }
 
 }
