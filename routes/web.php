@@ -14,22 +14,33 @@ use App\Http\Controllers\DolgozatBlade ;
 use App\Http\Controllers\RopbeallitasApiController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\KiiratasController;
+use App\Http\Controllers\IndexController;
 
 Route::get('/', function () {
     return view('leiras');
 });
 
 
-Route::get('/index', function () {
+/*Route::get('/index', function () {
     return view('index');
 });
 
 Route::get('/api/index', function () {
     return view('index');
-});
+});*/
+
+Route::get('/index', [IndexController::class, 'indexGameStart']);
+Route::get('/api/index', [IndexController::class, 'indexGameStart']);
+
+
+  
 
 Route::get('/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
 Route::get('/api/szoszedet', [SzoSzedetApiController::class, 'szoSzedetApi']);
+
+Route::get('/temakorIndexApi/{tantargyid}', [SzoSzedetApiController::class, 'temakorIndexApi'])->name("temakorIndexApi");
+Route::get('/api/temakorIndexApi/{tantargyid}', [SzoSzedetApiController::class, 'temakorIndexApi'])->name("temakorIndexApi");
+
 
 Route::get('/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");
 Route::get('/api/ropdolgozat/{temakorid}', [SzoSzedetApiController::class, 'szoSzedetDolgozatApi'])->name("ropdolgozat");

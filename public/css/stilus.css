@@ -217,6 +217,18 @@
     top: 100px;
 }
 
+#targyLegordulo
+{
+     position: absolute;
+     left: 20px;
+     top: 50%;
+}
+
+#temaKorLegordulo
+{
+    display:none;
+}
+
 .menulink
 {
     font-size: 40px;

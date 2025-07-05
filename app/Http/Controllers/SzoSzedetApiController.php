@@ -25,6 +25,14 @@ class SzoSzedetApiController extends Controller
         return response()->json($otszo);
     }
 
+    public function temakorIndexApi($tantargyid = 0)
+    {
+         $resultsTemakor =DB::table('targytemakor')
+         ->where('szulo', '=', $tantargyid)
+          ->orderBy('id', 'asc')
+        ->get();
+        return response()->json( $resultsTemakor);
 
+    }
     
 }

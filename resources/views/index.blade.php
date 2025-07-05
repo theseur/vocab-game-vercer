@@ -14,6 +14,7 @@
     <script src="/js/ladder.js" type="module" defer></script>
     <script src="/js/wordChange.js" type="module" defer></script>
     <script src="/js/romeo.js" type="module" defer></script>
+    <script src="/js/temakorok.js" type="module" defer></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -80,6 +81,25 @@
         </div>
     <div id="sziv">   
     </div>
+   <div id="targyLegordulo">
+      
+        
+        @if(count($datas) > 0)
+           <select name="Targyak" id="Targyak">
+             <option value="0">Válassz!</option>
+            @foreach($datas as $data)
+                
+                  <option value= '{{$data->id}}'>{{$data->nev}} </option>
+               
+                @endforeach
+             </select>
+             <select name="temakorok" id="temakorok">  </select>
+        @endif
+   </div>
+
+   <div id="temaKorLegordulo">
+   </div>
+
    
 </body>
 </html>
