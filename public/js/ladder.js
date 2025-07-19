@@ -1,6 +1,6 @@
 import{megoldas, wordRequest} from"./wordChange.js";
 import{flySpeed, resetBirdposition} from"./bird.js";
-
+import{ wordRequestDolgozat} from "./wordChangeDolgozat.js";
 
 
 let letrahelyepx=-1;
@@ -14,6 +14,7 @@ export function letrahely()
 let pont=0;
 let pontDiv=document.getElementById("pont");
 let heart= document.getElementById("sziv");
+let temakoridSelect = document.getElementById("temakorid");
 
 function rotateLadder(e)
 {
@@ -39,7 +40,15 @@ function rotateLadder(e)
                     elemMozgatasVizszintesen("#romeo",letrahelyepx+"px",()=>{
                         elemMozgatasFuggolegesen("#romeo", "120px",()=>{
                             visszatesz(()=>{
-                                wordRequest();
+
+                                if(temakoridSelect.value==0)
+                                        {
+                                            wordRequest();
+                                        }
+                                        else 
+                                        {
+                                            wordRequestDolgozat();
+                                        }
                                  alert("Rómeó szerelmet tudott vallani, kaptál egy pontot!");
                                  $('#sziv').attr('style', 'display: none !important');
                                  resetBirdposition();
@@ -55,7 +64,15 @@ function rotateLadder(e)
                 {
                  alert("nem jó");
                  visszatesz();
-                 wordRequest();
+                 
+                                if(temakoridSelect.value==0)
+                                        {
+                                            wordRequest();
+                                        }
+                                        else 
+                                        {
+                                            wordRequestDolgozat();
+                                        }
                 }   
                 flySpeed(5);
 

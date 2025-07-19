@@ -94,6 +94,7 @@
                 @endforeach
              </select>
              <select name="temakorok" id="temakorok">  </select>
+               <input type="hidden" id="temakorid" value="0">
         @endif
    </div>
 

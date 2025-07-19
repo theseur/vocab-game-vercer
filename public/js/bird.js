@@ -1,8 +1,10 @@
 import{wordRequest} from "./wordChange.js";
+import{ wordRequestDolgozat} from "./wordChangeDolgozat.js";
 
 let birdPosition=0;
 let flyingSpeed=5;
 let birdDiv=document.getElementById("bird");
+let temakoridSelect = document.getElementById("temakorid");
 
 export function resetBirdposition()
 {
@@ -16,7 +18,15 @@ function birdMovement()
     if(birdPosition>window.innerWidth)
     {
         birdPosition=0;
-        wordRequest();
+        if(temakoridSelect.value==0)
+        {
+            wordRequest();
+        }
+        else 
+        {
+            wordRequestDolgozat();
+        }
+        
     }
     birdDiv.style.left=birdPosition+"px";
 
